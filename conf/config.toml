@@ -1,0 +1,23 @@
+platform_url = 'https://platform-in.risksense.com'
+
+# The API Token can be generated in the RiskSense UI, under User Settings.
+api_key = '11ec9ec6-f29d-794b-9fb0-02a87de7e1ee:Uk1pMkhKNSZ1Qmt0d3I1SGZ4TElkRjBvTWZRI2hDdlpBS1JCS253SGhLcE4xYUdvaXIjSSNodXBrVkhWUEpjIQ=='  
+
+# Specify the path to the folder containing the files you wish to upload.
+# If you update this, please use the absolute path to your desired folder.
+zipfile_name = 'Dependabot_CSV.zip'
+#json_filename = 'bandit-report.json'
+
+# Trigger URBA upon completion of upload processing.
+auto_urba = true
+
+# You may uncomment this parameter and enter the desired network ID for your upload here if you already know it.
+network_id = 155225 
+#for E_D
+
+# You may uncomment this parameter and enter the desired client ID for your upload here if you already know it.
+client_id = 100
+
+
+git_user = 'jaibalajiCSW'
+repo_name = 'Elanco_DevSecOps'
