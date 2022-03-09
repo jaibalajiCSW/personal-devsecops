@@ -1,0 +1,39 @@
+name: Run Script1
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+      - name: Install dependencies
+        env:
+          OWNER_REPO: ${{ secrets.OWNER_REPO}}
+          OWNER: ${{ secrets.OWNER}}
+          REPO: ${{ secrets. REPO}}
+          REPO_NAME: ${{ secrets. REPO_NAME}}
+          AUTH_TOKEN1: ${{ secrets.AUTH_TOKEN1}}
+          
+        run: |
+          pip install --upgrade pip
+          pip install requests
+          python Dependabot_pull.py > depend.csv
+      - uses: actions/upload-artifact@v2
+        with: 
+          name: Dependabot_CSV 
+          path: depend.csv
+  upload-to-rs:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check out self
+      uses: actions/checkout@v3
+    - name: Upload to RS
+      env:
+        AUTH_TOKEN: ${{ secrets.AUTH_TOKEN}}
+      run:
+          | 
+          python -m pip install toml
+          python Upload_to_Platforn_depend.py
