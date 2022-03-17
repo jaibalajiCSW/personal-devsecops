@@ -1,0 +1,12 @@
+platform_url = 'https://platform-in.risksense.com'
+
+# Specify the path to the folder containing the files you wish to upload.
+# If you update this, please use the absolute path to your desired folder.
+json_filename = 'bandit-report.json'
+folder = 'reports/'
+
+#Specify the network to which the file is to be uploaded. 
+network_name = 'devsectest'
+
+# You may uncomment this parameter and enter the desired client ID for your upload here if you already know it.
+client_id = 100
