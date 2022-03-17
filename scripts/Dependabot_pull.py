@@ -90,6 +90,6 @@ for i in j['data']['viewer']['repository']['vulnerabilityAlerts']['nodes']:
   csvdata += repo_url + i['vulnerableManifestPath'] + "," #REQUIRED
 csv.write(csvdata)
 csv.close()
-# print(csvdata)
+print(csvdata)
 
 
