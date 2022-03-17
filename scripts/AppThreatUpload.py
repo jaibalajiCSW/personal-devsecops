@@ -258,7 +258,7 @@ def get_network_id(platform_url, api_key, client_id, network_name):
 def main():
 
   #READING THE CONFIG FILE 
-  conf_file = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'conf', 'config.toml')
+  conf_file = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'conf', 'app_threat_config.toml')
   config = read_config_file(conf_file)
   platform_url, api_key, client_id, network_name, json_filename, folder= process_config(config)
   #CHECKING FOR MISSING VARIABLES
