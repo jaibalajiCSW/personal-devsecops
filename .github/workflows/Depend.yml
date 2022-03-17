@@ -1,7 +1,6 @@
-name: Run Script1
+name: Dependabot_Alerts
 
-on: [push]
-
+on: push
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -9,11 +8,25 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-python@v2
       - name: Install dependencies
+        env:
+          OWNER_REPO: ${{ secrets.OWNER_REPO}}
+          OWNER: ${{ secrets.OWNER}}
+          REPO: ${{ secrets. REPO}}
+          REPO_NAME: ${{ secrets. REPO_NAME}}
+          AUTH_TOKEN1: ${{ secrets.AUTH_TOKEN1}}
+          
         run: |
           pip install --upgrade pip
           pip install requests
-          python Dependabot_pull.py > depend.csv
+          python Dependabot_Alert/Dependabot_pull.py > depend.csv
       - uses: actions/upload-artifact@v2
         with: 
           name: Dependabot_CSV 
           path: depend.csv
+      - name: Upload to RS
+        env:
+          RS_API_KEY: ${{ secrets.RISKSENSE_TOKEN}}
+        run:
+            | 
+            python -m pip install toml
+            python Dependabot_Alert/RS_Upload_Depedabot.py
