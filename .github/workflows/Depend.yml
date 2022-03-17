@@ -1,8 +1,12 @@
 name: Dependabot_Alerts
 
-on: push
+on:
+  push:
+    paths: 
+    - 'app/**'
+    # Triggers the scanning if the files of the "app" directory are changed 
 jobs:
-  build:
+  dependabot_scan:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -30,3 +34,27 @@ jobs:
             | 
             python -m pip install toml
             python scripts/RS_Upload_Depedabot.py
+
+
+  appthreat_scan:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check out self
+      uses: actions/checkout@v3
+    - name: Self sast-scan
+      uses: AppThreat/sast-scan-action@1.0.2
+      with:
+        src: /github/workspace/app/
+        type: python
+    - name: Upload scan reports
+      uses: actions/upload-artifact@v1.0.0
+      with:
+        name: sast-scan-reports
+        path: reports
+    - name: Upload to RS
+      env:
+        RS_API_KEY: ${{ secrets.RS_API_KEY}}
+      run:
+          | 
+          python -m pip install toml
+          python scripts/AppThreatUpload.py
